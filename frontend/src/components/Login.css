@@ -1,0 +1,58 @@
+.container {
+    padding: 16px;
+    background-color:white;
+    width: 500px;
+    height: 500px;
+    margin-left: 400px;
+    margin-top: 100px;
+  }
+
+.bigtitle {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.login_select {
+    position: relative;
+    font-family: Arial;
+    font-size: 16px;
+    margin: 15px;
+  }
+
+.box_input {
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 14px;
+    width: 400px;
+}
+
+.box_label {
+    font-size: 14px;
+}
+
+.submit_button {
+    width: 400px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 40px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+
+.create {
+    width: auto;
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 14px;
+  }
+
+
+.err {
+    font-size: 14px;
+}

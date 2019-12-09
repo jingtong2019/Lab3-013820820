@@ -1,0 +1,17 @@
+.detail_result {
+    position: fixed;
+    width: 60%;
+    left: 50px;
+    font-size: 20px;
+    margin: 40px;
+  }
+
+
+  .quantity_section {
+    /* display: none; */
+    position: fixed;
+    top: 100px;
+    right: 100px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+  }

@@ -1,0 +1,19 @@
+.account_container {
+    padding: 16px;
+    background-color:white;
+    width: 500px;
+    height: 500px;
+    margin-left: 200px;
+    margin-top: 20px;
+}
+
+
+.box {
+    padding: 12px 20px;
+    width: 400px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 14px;
+    
+}

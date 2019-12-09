@@ -1,0 +1,100 @@
+db.createCollection("customers", {autoIndexId : true})
+
+db.owners.insert({
+   email: 'charles@gmail.com', 
+   password: '1234',
+   fname: 'Jing',
+   lname: 'Tong',
+   rname: 'CurryPizza',
+   zipcode: '95051',
+})
+
+
+db.customers.find({"email":"tongjing2014@gmail.com"}).pretty()
+db.customers.deleteMany({})
+db.customers.find()
+
+
+db.createCollection("owners")
+db.owners.find()
+
+db.createCollection("restaurants")
+
+db.sections.find({"rid":"5db628b150bd27616d2fd90d"}).pretty()
+
+
+db.sections.find({
+    "menus.name" :  { $regex: /beef/ }
+}).pretty();
+
+db.owners.find( {}, { "_id": 1, "email": 1} )
+
+
+db.items.insert([
+  { "_id" : 1, "rid" : 1, "item" : "almonds", description: "almond clusters", "instock" : 120 },
+  { "_id" : 2, "rid" : 4, "item" : "bread", description: "raisin and nut bread", "instock" : 80 },
+  { "_id" : 3, "rid" : 2, "item" : "pecans", description: "candied pecans", "instock" : 60 }
+])
+
+
+db.sections.aggregate([
+   {
+      $lookup:
+       {
+         from: "restaurants",
+         localField: "rid",
+         foreignField: "_id",
+         as: "rid"
+       }
+  },
+  {$project: { "rid": 0 }}
+])
+
+
+
+doc = db.sections.aggregate([
+   {
+      $lookup:
+       {
+         from: "restaurants",
+         localField: "rid",
+         foreignField: "_id",
+         as: "rid"
+       }
+  }
+])
+
+for (key in doc) print(key);
+
+
+db.sections.aggregate([
+{
+   "$match" : {
+       "menus" : {
+          "$elemMatch" : {
+             "$or" : [
+                { "name" : '/beef/' },
+                { "description" : '/beef/' }
+             ]
+          }
+       },
+   }
+},
+{
+   "$project" : {
+       "_id" : 1, "rid" : 1,
+       "menus" : {
+          "$filter" : {
+             "input" : "$menus",
+             "as" : "menus",
+             "cond" : {
+                "$or" : [
+                   { "$eq" : [ "$$menus.name", '/beef/' ] },
+                   { "$eq" : [ "$$menus.description", '/beef/' ] }
+                ]
+             }
+          }
+       }
+   }
+}
+]).pretty();
